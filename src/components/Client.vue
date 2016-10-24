@@ -49,7 +49,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Request params</div>
           <div class="panel-body" style="height: 500px;">
-            <editor editorId="reqEditor" paramId="requestParams" :content="getRequestParams"></editor>
+            <editor editor-id="reqEditor" :content="getRequestParams" v-on:change-content="changeParams"></editor>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Response</div>
           <div class="panel-body" style="height: 500px;">
-            <editor editorId="resEditor" paramId="response" :content="getResponse"></editor>
+            <editor editor-id="resEditor" :content="getResponse" v-on:change-content="changeResponse"></editor>
           </div>
         </div>
       </div>
@@ -120,6 +120,12 @@ export default {
 
       this.$store.dispatch(API_REQUEST, param)
       return this
+    },
+    changeParams (value) {
+      this.requestParams = value
+    },
+    changeResponse (value) {
+      this.response = value
     }
   }
 }

@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  props: ['editorId', 'paramId', 'content'],
+  props: ['editorId', 'content'],
   data () {
     return {
       editor: Object
@@ -12,7 +12,7 @@ export default {
   },
   watch: {
     'content' (value) {
-      this.editor.setValue(value)
+      this.editor.setValue(value, -1)
     }
   },
   mounted () {
@@ -21,7 +21,7 @@ export default {
     this.editor.getSession().setMode('ace/mode/json')
 
     this.editor.on('change', () => {
-      this.$parent[this.paramId] = this.editor.getValue()
+      this.$emit('change-content', this.editor.getValue())
     })
   }
 }
