@@ -38,13 +38,13 @@ router.post('/', (req, res) => {
   const client = sacloud.createClient({
     accessToken: req.body.accessToken,
     accessTokenSecret: req.body.secretToken,
-    debug: false
+    debug: true
   })
 
   const params = {
     method: req.body.method || 'GET',
     path: req.body.uri,
-    body: req.body.params
+    body: req.body.params && JSON.parse(req.body.params)
   }
 
   client.createRequest(params).send((err, result) => {

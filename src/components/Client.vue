@@ -115,7 +115,7 @@ export default {
         zone: this.$store.state.request.zone,
         method: this.$store.state.request.method,
         uri: this.$store.state.request.uri,
-        params: this.requestParams || '{}'
+        params: this.requestParams || ''
       }
 
       this.$store.dispatch(API_REQUEST, param)
