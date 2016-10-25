@@ -42,7 +42,7 @@
                 <li><a @click="CHANGE_METHOD('DELETE')">DELETE</a></li>
               </ul>
             </div>
-            <input id="http-uri" type="text" class="form-control" style="width: 400px;"　placeholder="/server/123456789012/power" :value="uri">
+            <input id="http-uri" type="text" class="form-control" style="width: 400px;"　placeholder="/server/123456789012/power" v-model="uri">
           </div>
           <button type="button" class="btn btn-primary" @click="run">Run</button>
         </div>
@@ -53,7 +53,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Request params</div>
           <div class="panel-body" style="height: 500px;">
-            <editor editor-id="reqEditor" :content="getRequestParams" v-on:change-content="changeParams"></editor>
+            <editor editor-id="reqEditor" :content="requestParams" v-on:change-content="changeParams"></editor>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Response</div>
           <div class="panel-body" style="height: 500px;">
-            <editor editor-id="resEditor" :content="getResponse" v-on:change-content="changeResponse"></editor>
+            <editor editor-id="resEditor" :content="response" v-on:change-content="changeResponse"></editor>
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import Editor from './Editor'
-import { API_REQUEST, CHANGE_ZONE, CHANGE_METHOD } from '../store/mutation-types'
+import { API_REQUEST, CHANGE_ZONE, CHANGE_METHOD, CHANGE_URI, CHANGE_PARAMS } from '../store/mutation-types'
 
 export default {
   components: {
@@ -94,30 +94,37 @@ export default {
     return {
       accessToken: '',
       secretToken: '',
-      rememberMe: false,
-      requestParams: '',
-      response: ''
+      rememberMe: false
     }
   },
   computed: {
     ...mapState({
       method: state => state.request.method,
-      uri: state => state.request.uri
+      response: state => state.response
     }),
     zone: {
       get () {
         return this.$store.state.request.zone
       },
       set (zone) {
-        debugger
         this.$store.commit(CHANGE_ZONE, zone)
       }
     },
-    getResponse () {
-      return this.$store.state.response
+    uri: {
+      get () {
+        return this.$store.state.request.uri
+      },
+      set (uri) {
+        this.$store.commit(CHANGE_URI, uri)
+      }
     },
-    getRequestParams () {
-      return this.$store.state.request.params
+    requestParams: {
+      get () {
+        return this.$store.state.request.params
+      },
+      set (params) {
+        this.$store.commit(CHANGE_PARAMS, params)
+      }
     }
   },
   mounted () {
@@ -160,7 +167,7 @@ export default {
       return this
     },
     changeParams (value) {
-      this.requestParams = value
+      this.$store.commit(CHANGE_PARAMS, value)
     },
     changeResponse (value) {
       this.response = value

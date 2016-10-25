@@ -25,5 +25,11 @@ export default {
   },
   [types.CHANGE_METHOD] (state, method) {
     state.request.method = method
+  },
+  [types.CHANGE_URI] (state, uri) {
+    state.request.uri = uri
+  },
+  [types.CHANGE_PARAMS] (state, params) {
+    state.request.params = params
   }
 }

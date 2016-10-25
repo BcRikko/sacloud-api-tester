@@ -7,12 +7,15 @@ export default {
   props: ['editorId', 'content'],
   data () {
     return {
-      editor: Object
+      editor: Object,
+      beforeContent: ''
     }
   },
   watch: {
     'content' (value) {
-      this.editor.setValue(value, -1)
+      if (value !== this.beforeContent) {
+        this.editor.setValue(value, -1)
+      }
     }
   },
   mounted () {
@@ -21,6 +24,7 @@ export default {
     this.editor.getSession().setMode('ace/mode/json')
 
     this.editor.on('change', () => {
+      this.beforeContent = this.editor.getValue()
       this.$emit('change-content', this.editor.getValue())
     })
   }
