@@ -35,6 +35,10 @@ router.post('/', (req, res) => {
     return
   }
 
+  if (req.body.zone) {
+    sacloud.API_ROOT = `https://secure.sakura.ad.jp/cloud/zone/${req.body.zone}/api/cloud/1.1/`
+  }
+
   const client = sacloud.createClient({
     accessToken: req.body.accessToken,
     accessTokenSecret: req.body.secretToken,
