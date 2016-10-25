@@ -16,7 +16,11 @@
             <p class="alert alert-danger" style="margin-top: 5px;"  v-show="validationToken(secretToken)">Required input</p>
           </transition>
         </div>
-
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" v-model="rememberMe"> Remember me
+          </label>
+        </div>
         <label>Request</label>
         <div class="form-inline">
           <div class="form-group">
@@ -101,6 +105,13 @@ export default {
       return this.$store.state.request.params
     }
   },
+  mounted () {
+    this.accessToken = window.localStorage.getItem('sacloud-api-tester:access-token')
+    this.secretToken = window.localStorage.getItem('sacloud-api-tester:secret-token')
+    if (this.accessToken || this.secretToken) {
+      this.rememberMe = true
+    }
+  },
   methods: {
     validationToken (token) {
       return !token || token.trim().length === 0
@@ -109,6 +120,14 @@ export default {
       this.$store.state.request.method = method
     },
     run () {
+      if (this.rememberMe) {
+        window.localStorage.setItem('sacloud-api-tester:access-token', this.accessToken)
+        window.localStorage.setItem('sacloud-api-tester:secret-token', this.secretToken)
+      } else {
+        window.localStorage.removeItem('sacloud-api-tester:access-token')
+        window.localStorage.removeItem('sacloud-api-tester:secret-token')
+      }
+
       const param = {
         accessToken: this.accessToken,
         secretToken: this.secretToken,
