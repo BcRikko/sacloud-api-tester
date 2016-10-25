@@ -25,24 +25,24 @@
         <div class="form-inline">
           <div class="form-group">
             <label for="zone" hidden>Zone:</label>
-            <select id="zone" class="form-control" v-model="$store.state.request.zone">
+            <select id="zone" class="form-control" v-model="zone">
               <option value="is1a">Ishikari 1st</option>
               <option value="is1b">Ishikari 2nd</option>
               <option value="tk1a">Tokyo 1st</option>
-              <option value="tk1s">Sandbox</option>
+              <option value="tk1v">Sandbox</option>
             </select>
           </div>
           <div class="input-group">
             <div class="input-group-btn">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$store.state.request.method}} <span class="caret"></span></button>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{method}} <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <li><a @click="changeMethod('GET')">GET</a></li>
-                <li><a @click="changeMethod('POST')">POST</a></li>
-                <li><a @click="changeMethod('PUT')">PUT</a></li>
-                <li><a @click="changeMethod('DELETE')">DELETE</a></li>
+                <li><a @click="CHANGE_METHOD('GET')">GET</a></li>
+                <li><a @click="CHANGE_METHOD('POST')">POST</a></li>
+                <li><a @click="CHANGE_METHOD('PUT')">PUT</a></li>
+                <li><a @click="CHANGE_METHOD('DELETE')">DELETE</a></li>
               </ul>
             </div>
-            <input id="http-uri" type="text" class="form-control" style="width: 400px;"　placeholder="/server/123456789012/power" v-model="$store.state.request.uri">
+            <input id="http-uri" type="text" class="form-control" style="width: 400px;"　placeholder="/server/123456789012/power" :value="uri">
           </div>
           <button type="button" class="btn btn-primary" @click="run">Run</button>
         </div>
@@ -82,8 +82,9 @@
 </style>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 import Editor from './Editor'
-import { API_REQUEST } from '../store/mutation-types'
+import { API_REQUEST, CHANGE_ZONE, CHANGE_METHOD } from '../store/mutation-types'
 
 export default {
   components: {
@@ -93,11 +94,25 @@ export default {
     return {
       accessToken: '',
       secretToken: '',
+      rememberMe: false,
       requestParams: '',
       response: ''
     }
   },
   computed: {
+    ...mapState({
+      method: state => state.request.method,
+      uri: state => state.request.uri
+    }),
+    zone: {
+      get () {
+        return this.$store.state.request.zone
+      },
+      set (zone) {
+        debugger
+        this.$store.commit(CHANGE_ZONE, zone)
+      }
+    },
     getResponse () {
       return this.$store.state.response
     },
@@ -113,6 +128,10 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      CHANGE_ZONE,
+      CHANGE_METHOD
+    }),
     validationToken (token) {
       return !token || token.trim().length === 0
     },
@@ -131,9 +150,9 @@ export default {
       const param = {
         accessToken: this.accessToken,
         secretToken: this.secretToken,
-        zone: this.$store.state.request.zone,
-        method: this.$store.state.request.method,
-        uri: this.$store.state.request.uri,
+        zone: this.zone,
+        method: this.method,
+        uri: this.uri,
         params: this.requestParams || ''
       }
 

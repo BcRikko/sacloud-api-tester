@@ -18,5 +18,12 @@ export default {
   [types.SELECT_API] (state, api) {
     state.request.method = api.method
     state.request.uri = api.uri
+  },
+
+  [types.CHANGE_ZONE] (state, zone) {
+    state.request.zone = zone
+  },
+  [types.CHANGE_METHOD] (state, method) {
+    state.request.method = method
   }
 }

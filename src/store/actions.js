@@ -10,7 +10,6 @@ export default {
 
   [types.SELECT_API] ({ commit }, api) {
     const match = api.match(/(GET|POST|PUT|DELETE) (.+)/)
-    debugger
     commit(types.SELECT_API, {
       method: match[1],
       uri: match[2]
