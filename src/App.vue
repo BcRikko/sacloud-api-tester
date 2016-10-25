@@ -3,7 +3,7 @@
     <top-bar></top-bar>
     <div class="container-fluid">
       <div class="row">
-        <sidebar class="col-sm-3" :apiList="apiList"></sidebar>
+        <sidebar class="col-sm-3 hidden-xs" :apiList="apiList"></sidebar>
         <client class="col-sm-9 col-sm-offset-3"></client>
       </div>
     </div>

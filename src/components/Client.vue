@@ -22,31 +22,31 @@
             <input type="checkbox" v-model="rememberMe"> Remember me
           </label>
         </div>
-        <label>Request</label>
-        <div class="form-inline">
-          <div class="form-group">
-            <label for="zone" hidden>Zone:</label>
-            <select id="zone" class="form-control" v-model="zone">
-              <option value="is1a">Ishikari 1st</option>
-              <option value="is1b">Ishikari 2nd</option>
-              <option value="tk1a">Tokyo 1st</option>
-              <option value="tk1v">Sandbox</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{method}} <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li><a @click="CHANGE_METHOD('GET')">GET</a></li>
-                <li><a @click="CHANGE_METHOD('POST')">POST</a></li>
-                <li><a @click="CHANGE_METHOD('PUT')">PUT</a></li>
-                <li><a @click="CHANGE_METHOD('DELETE')">DELETE</a></li>
-              </ul>
+          <label>Request</label>
+          <div class="form-inline">
+            <div class="form-group">
+              <label for="zone" hidden>Zone:</label>
+              <select id="zone" class="form-control" v-model="zone">
+                <option value="is1a">Ishikari 1st</option>
+                <option value="is1b">Ishikari 2nd</option>
+                <option value="tk1a">Tokyo 1st</option>
+                <option value="tk1v">Sandbox</option>
+              </select>
             </div>
-            <input id="http-uri" type="text" class="form-control" style="width: 400px;"　placeholder="/server/123456789012/power" v-model="uri">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{method}} <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a @click="CHANGE_METHOD('GET')">GET</a></li>
+                  <li><a @click="CHANGE_METHOD('POST')">POST</a></li>
+                  <li><a @click="CHANGE_METHOD('PUT')">PUT</a></li>
+                  <li><a @click="CHANGE_METHOD('DELETE')">DELETE</a></li>
+                </ul>
+              </div>
+              <input id="http-uri" type="text" class="form-control"　placeholder="/server/123456789012/power" v-model="uri" style="width: 360px;">
+            </div>
+            <button type="button" class="btn btn-primary" @click="run">Run</button>
           </div>
-          <button type="button" class="btn btn-primary" @click="run">Run</button>
-        </div>
       </form>
     </div>
     <div class="main">
