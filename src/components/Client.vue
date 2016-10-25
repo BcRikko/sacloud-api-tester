@@ -1,5 +1,6 @@
 <template>
   <div class="client">
+    <div class="loader" v-show="loading"></div>
     <div class="navbar">
       <form class="form">
         <div class="form-group" :class="{ 'has-error' : validationToken(accessToken) }">
@@ -79,6 +80,16 @@
 .token-enter, .token-leave-active {
   opacity: 0
 }
+
+.loader {
+  z-index: 99999;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(3,3,3,0.3);
+}
 </style>
 
 <script>
@@ -94,7 +105,8 @@ export default {
     return {
       accessToken: '',
       secretToken: '',
-      rememberMe: false
+      rememberMe: false,
+      loading: false
     }
   },
   computed: {
@@ -154,7 +166,7 @@ export default {
         window.localStorage.removeItem('sacloud-api-tester:secret-token')
       }
 
-      const param = {
+      const params = {
         accessToken: this.accessToken,
         secretToken: this.secretToken,
         zone: this.zone,
@@ -163,8 +175,13 @@ export default {
         params: this.requestParams || ''
       }
 
-      this.$store.dispatch(API_REQUEST, param)
-      return this
+      this.loading = true
+      this.$store.dispatch(API_REQUEST, {
+        params: params,
+        callback: () => {
+          this.$data.loading = false
+        }
+      })
     },
     changeParams (value) {
       this.$store.commit(CHANGE_PARAMS, value)

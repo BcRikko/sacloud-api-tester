@@ -2,9 +2,10 @@ import * as types from './mutation-types'
 import api from '../api'
 
 export default {
-  [types.API_REQUEST] ({ commit }, params) {
+  [types.API_REQUEST] ({ commit }, { params, callback }) {
     api.apiRequest(params, (result) => {
       commit(types.API_REQUEST, result)
+      if (callback) { callback() }
     })
   },
 
