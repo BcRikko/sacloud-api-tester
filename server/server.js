@@ -42,7 +42,8 @@ router.post('/', (req, res) => {
   const client = sacloud.createClient({
     accessToken: req.body.accessToken,
     accessTokenSecret: req.body.secretToken,
-    debug: true
+    disableLocalizeKeys: true,
+    debug: process.env.NODE_ENV !== 'production'
   })
 
   const params = {

@@ -22,7 +22,8 @@ export default {
         callback(result)
       }
     }).catch((err) => {
-      window.alert(err.message)
+      console.log(err.message)
+      callback()
     })
   }
 }

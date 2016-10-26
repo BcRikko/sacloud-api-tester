@@ -54,7 +54,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Request params</div>
           <div class="panel-body" style="height: 500px;">
-            <editor editor-id="reqEditor" :content="requestParams" v-on:change-content="changeParams"></editor>
+            <editor editor-id="reqEditor" :content="requestParams" @change-content="changeParams"></editor>
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Response</div>
           <div class="panel-body" style="height: 500px;">
-            <editor editor-id="resEditor" :content="response" v-on:change-content="changeResponse"></editor>
+            <editor editor-id="resEditor" :content="response" @change-content="changeResponse"></editor>
           </div>
         </div>
       </div>

@@ -22,6 +22,7 @@ export default {
     this.editor = window.ace.edit(this.editorId)
     this.editor.setTheme('ace/theme/github')
     this.editor.getSession().setMode('ace/mode/json')
+    this.editor.getSession().setFoldStyle('markbegin')
 
     this.editor.on('change', () => {
       this.beforeContent = this.editor.getValue()
