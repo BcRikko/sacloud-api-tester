@@ -3,7 +3,7 @@
     <top-bar></top-bar>
     <div class="container-fluid">
       <div class="row">
-        <sidebar class="col-sm-3 hidden-xs" :apiList="apiList"></sidebar>
+        <sidebar class="col-sm-3 app-sidebar" :apiList="apiList"></sidebar>
         <client class="col-sm-9 col-sm-offset-3"></client>
       </div>
     </div>
@@ -12,6 +12,17 @@
 
 <style>
 body { padding-top: 90px; }
+
+.app-sidebar {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .app-sidebar {
+    display: block;
+  }
+
+}
 </style>
 
 <script>

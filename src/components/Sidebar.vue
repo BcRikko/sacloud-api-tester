@@ -16,7 +16,6 @@
   top: 90px;
   bottom: 0;
   left: 0;
-  display: block;
   overflow-x: hidden;
   overflow-y: auto
 }
