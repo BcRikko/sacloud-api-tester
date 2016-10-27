@@ -6,7 +6,7 @@
         <router-link tag="li" to="/history" class="sidemenu__icon list-group-item glyphicon glyphicon-time"></router-link>
       </ul>
     </div>
-    <router-view class="sidebar" :apiList="apiList"></router-view>
+    <router-view class="sidebar col-sm-10" :apiList="apiList"></router-view>
   </nav>
 </template>
 
@@ -15,7 +15,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
+  left: 10px;
   width: 60px;
   overflow: hidden;
 }
@@ -27,19 +27,23 @@
   font-size: 24px;
   text-align: center;
 
+  margin: 10px auto;
+
   cursor: pointer;
   border: none;
 }
 .sidemenu__icon:hover {
   color: #337AB7;
 }
+.sidemenu__icon.active:hover {
+  color: #fff;
+}
 
 .sidebar {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 60px;
-  width: 80%;
+  left: 65px;
   overflow-x: hidden;
   overflow-y: auto
 }
