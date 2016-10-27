@@ -3,9 +3,16 @@ import api from '../api'
 
 export default {
   [types.API_REQUEST] ({ commit }, { params, callback }) {
-    api.apiRequest(params, (result) => {
-      commit(types.API_REQUEST, result)
-      if (callback) { callback() }
+    api.apiRequest(params, {
+      onSuccess: (result) => {
+        commit(types.API_REQUEST, result.response.response)
+        if (callback) { callback(result) }
+      },
+      onFailure: (result) => {
+        const data = result.responseJSON || result
+        commit(types.API_REQUEST, data)
+        if (callback) { callback(data) }
+      }
     })
   },
 

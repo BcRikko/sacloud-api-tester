@@ -20,39 +20,33 @@ router.use((req, res, next) => {
   next()
 })
 
-router.post('/', (req, res) => {
-  res.contentType('application/json')
+const request = (data, cb) => {
+  console.log(JSON.stringify(data, null, ' '))
 
-  // validate
-  if (!(req.body.accessToken && req.body.secretToken && req.body.uri)) {
-    res.status(400).json({
-      status: {
-        code: 400,
-        message: 'Bad Request'
-      },
-      response: {}
-    })
-    return
+  const res = {
+    status: '',
+    data: ''
   }
 
-  if (req.body.zone) {
-    sacloud.API_ROOT = `https://secure.sakura.ad.jp/cloud/zone/${req.body.zone}/api/cloud/1.1/`
+  if (data.zone) {
+    sacloud.API_ROOT = `https://secure.sakura.ad.jp/cloud/zone/${data.zone}/api/cloud/1.1/`
   }
 
   const client = sacloud.createClient({
-    accessToken: req.body.accessToken,
-    accessTokenSecret: req.body.secretToken,
+    accessToken: data.accessToken,
+    accessTokenSecret: data.secretToken,
     disableLocalizeKeys: true,
     debug: process.env.NODE_ENV !== 'production'
   })
 
   const params = {
-    method: req.body.method || 'GET',
-    path: req.body.uri,
-    body: req.body.params && JSON.parse(req.body.params)
+    method: data.method || 'GET',
+    path: data.uri,
+    body: data.params && JSON.parse(data.params)
   }
 
   client.createRequest(params).send((err, result) => {
+    console.log(err)
     const response = {
       status: {
         code: result.responseInfo.status,
@@ -60,12 +54,46 @@ router.post('/', (req, res) => {
       },
       response: result
     }
-    if (err) {
-      res.status(result.responseInfo.status)
-    }
 
-    res.json(response)
+    res.status = result.responseInfo.status
+    res.data = response
+    cb(res)
   })
+}
+
+router.post('/', (req, res) => {
+  res.contentType('application/json')
+
+  // validate
+  if (req.body.data) {
+    try {
+      const data = JSON.parse(req.body.data)
+      if (!(data.accessToken && data.secretToken && data.uri)) {
+        res.status(400).json({
+          status: {
+            code: 400,
+            message: 'Bad Request'
+          },
+          response: {}
+        })
+        return
+      }
+
+      request(data, (result) => {
+        res.status(result.status)
+        res.json(result.data)
+      })
+    } catch (e) {
+      res.status(400).json({
+        status: {
+          code: 400,
+          message: e.message
+        },
+        response: {}
+      })
+      return
+    }
+  }
 })
 
 app.use('/', router)
