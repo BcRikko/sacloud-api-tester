@@ -6,6 +6,7 @@ export default {
     state.response = response
 
     state.history.push({
+      date: window.moment().format('YYYY/MM/DD HH:mm:ss'),
       request: {
         zone: state.request.zone,
         method: state.request.method,
@@ -15,9 +16,14 @@ export default {
       response: state.response
     })
   },
+
   [types.SELECT_API] (state, api) {
     state.request.method = api.method
     state.request.uri = api.uri
+  },
+  [types.SELECT_HISTORY] (state, history) {
+    state.request = history.request
+    state.response = history.response
   },
 
   [types.CHANGE_ZONE] (state, zone) {

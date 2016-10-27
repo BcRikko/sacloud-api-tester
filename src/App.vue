@@ -20,6 +20,10 @@ body { padding-top: 90px; }
 @media screen and (min-width: 768px) {
   .app-sidebar {
     display: block;
+    position: fixed;
+    top: 90px;
+    bottom: 0;
+    left: 0;
   }
 
 }
