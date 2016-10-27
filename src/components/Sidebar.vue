@@ -5,7 +5,7 @@
         <input id="search" type="text" class="form-control" placeholder="Search..." v-model.trim="searchText">
       </div>
     <div class="list-group">
-      <button class="list-group-item" v-for="api in filterdList" @click="SELECT_API(api.uri)" data-toggle="tooltip" data-placement="top" :title="api.desc">{{api.uri}}</button>
+      <button class="list-group-item" style="overflow: hidden; text-overflow: ellipsis;" v-for="api in filterdList" @click="SELECT_API(api.uri)" data-toggle="tooltip" data-placement="top" :title="api.desc">{{api.uri}}</button>
     </div>
   </div>
 </template>
