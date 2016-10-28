@@ -1,3 +1,3 @@
 export default {
-  historys: state => state.history.reverse()
+  historys: state => state.history.list.reverse()
 }

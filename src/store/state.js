@@ -11,5 +11,17 @@ export default {
     params: '{}'
   },
   response: {},
-  history: []
+  history: {
+    saveTo: window.localStorage.getItem('sacloud-api-tester:saveTo') || 'memory',
+    list: (() => {
+      const history = window.localStorage.getItem('sacloud-api-tester:history')
+      if (!history) return []
+
+      try {
+        return JSON.parse(history)
+      } catch (e) {
+        return []
+      }
+    })()
+  }
 }

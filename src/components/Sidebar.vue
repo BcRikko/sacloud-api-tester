@@ -4,6 +4,7 @@
       <ul class="list-group">
         <router-link tag="li" to="/" exact class="sidemenu__icon list-group-item glyphicon glyphicon-home"></router-link>
         <router-link tag="li" to="/history" class="sidemenu__icon list-group-item glyphicon glyphicon-time"></router-link>
+        <router-link tag="li" to="/settings" class="sidemenu__icon list-group-item glyphicon glyphicon-cog"></router-link>
       </ul>
     </div>
     <router-view class="sidebar col-sm-10" :apiList="apiList"></router-view>

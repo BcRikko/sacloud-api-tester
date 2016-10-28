@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>History</h3>
+    <h3 style="margin-top: 0;">History</h3>
     <p v-if="hasHistorys" class="bg-info" style="padding: 15px;">There is no history.</p>
     <div class="list-group">
       <button v-for="h in historys" @click="selectHistory(h)" class="list-group-item" style="overflow: hidden; text-overflow: ellipsis;">
