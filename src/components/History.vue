@@ -7,7 +7,7 @@
         <div class="card">
           <div class="card-block">
             <h5>{{ h.date }}</h5>
-            <p>{{ getZoneName(h.request.zone) }}</p>
+            <p style="margin: 0;">{{ getZoneName(h.request.zone) }}</p>
             <p>{{ h.request.method}} {{ h.request.uri}}</p>
           </div>
         </div>

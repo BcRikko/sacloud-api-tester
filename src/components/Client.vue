@@ -103,14 +103,14 @@ export default {
   },
   data () {
     return {
-      accessToken: '',
-      secretToken: '',
       rememberMe: false,
       loading: false
     }
   },
   computed: {
     ...mapState({
+      accessToken: state => state.tokens.accessToken,
+      secretToken: state => state.tokens.secretToken,
       method: state => state.request.method,
       response: state => state.response
     }),
@@ -140,8 +140,6 @@ export default {
     }
   },
   mounted () {
-    this.accessToken = window.localStorage.getItem('sacloud-api-tester:access-token')
-    this.secretToken = window.localStorage.getItem('sacloud-api-tester:secret-token')
     if (this.accessToken || this.secretToken) {
       this.rememberMe = true
     }
@@ -153,9 +151,6 @@ export default {
     }),
     validationToken (token) {
       return !token || token.trim().length === 0
-    },
-    changeMethod (method) {
-      this.$store.state.request.method = method
     },
     run () {
       if (this.rememberMe) {

@@ -2,7 +2,7 @@
   <div>
     <h3 style="margin-top: 0;">Settings</h3>
     <div class="form-group">
-      <label>Destination to save to</label>
+      <label>Destination of history to save to</label>
       <div class="radio">
         <label>
           <input type="radio" name="save-to" value="memory" v-model="saveTo">

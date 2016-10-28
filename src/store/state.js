@@ -1,7 +1,7 @@
 export default {
   tokens: {
-    accessToken: '',
-    secretToken: ''
+    accessToken: window.localStorage.getItem('sacloud-api-tester:access-token') || '',
+    secretToken: window.localStorage.getItem('sacloud-api-tester:secret-token') || ''
   },
   apiList: [],
   request: {
