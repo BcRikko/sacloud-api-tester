@@ -24,8 +24,9 @@
   display: block;
   width: 60px;
   height: 60px;
-  font-size: 24px;
+  line-height: 40px;
   text-align: center;
+  font-size: 24px;
 
   margin: 10px auto;
 
