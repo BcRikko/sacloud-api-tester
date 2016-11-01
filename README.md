@@ -3,25 +3,38 @@
 [さくらのクラウドのAPI](http://developer.sakura.ad.jp/cloud/api/1.1/)をテストするためのクライアント
 
 
-## Setup
+## Development
+
+### Setup
 
 ```bash
 npm install
 ```
 
-## Client Build/Run
+### Client Build/Run
 
 ```bash
 # develop(localhost:8080)
 npm run dev
-
-# release
-npm run build
 ```
 
-## Run Server
+### Run Server
 
 ```bash
 # localhost:3000
 npm run server
+```
+
+## Release
+
+### Install docker, docker-compose, node, npm
+
+```bash
+bash setup.sh
+```
+
+### deploy
+
+```bash
+bash deploy.sh
 ```
