@@ -1,0 +1,13 @@
+nginx:
+  build: nginx
+  volumes:
+    - ../dist:/root/www
+  ports:
+    - "8080:8080"
+node:
+  build: node
+  volumes:
+    - ../server:/root/server
+    - ../:/root
+  ports:
+    - "3000:3000"
