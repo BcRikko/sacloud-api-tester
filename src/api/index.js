@@ -1,3 +1,5 @@
+const API_ROOT = window.location.hostname
+
 export default {
   apiRequest (params, options) {
     const opts = options || {}
@@ -5,7 +7,7 @@ export default {
     params.uri = params.uri.substr(1)
     const data = JSON.stringify(params)
 
-    window.jQuery.post('http://localhost:3000', {
+    window.jQuery.post(`http://${API_ROOT}:3000`, {
       headers: {
         'Content-Type': 'application/json',
         'Content-Length': data.length.toString()
