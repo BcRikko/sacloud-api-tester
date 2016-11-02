@@ -5,36 +5,35 @@
 
 ## Development
 
-### Setup
-
 ```bash
+# Setup
 npm install
-```
 
-### Client Build/Run
-
-```bash
-# develop(localhost:8080)
+# Build client(localhost:8080)
 npm run dev
-```
 
-### Run Server
-
-```bash
-# localhost:3000
+# Run server(localhost:3000)
 npm run server
+
+# Local testing
+bash local.sh
 ```
+
 
 ## Release
 
-### Install docker, docker-compose, node, npm
+CentOS 7.2
 
 ```bash
+# Clone this repository
+git clone https://github.com/BcRikko/sacloud-api-tester.git
+
+# Install docker, docker-compose, node, npm
 bash setup.sh
-```
 
-### deploy
-
-```bash
+# deploy & run(<ipaddress>:8080)
 bash deploy.sh
+
+# stop
+bash stop.sh
 ```
