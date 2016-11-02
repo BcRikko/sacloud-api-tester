@@ -21,6 +21,12 @@ export default {
       window.localStorage.setItem('sacloud-api-tester:history', JSON.stringify(state.history.list))
     }
   },
+  [types.CHANGE_ACCESS_TOKEN] (state, token) {
+    state.tokens.accessToken = token
+  },
+  [types.CHANGE_SECRET_TOKEN] (state, token) {
+    state.tokens.secretToken = token
+  },
   [types.CHANGE_ZONE] (state, zone) {
     state.request.zone = zone
   },

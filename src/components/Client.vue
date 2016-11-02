@@ -95,7 +95,15 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import Editor from './Editor'
-import { API_REQUEST, CHANGE_ZONE, CHANGE_METHOD, CHANGE_URI, CHANGE_PARAMS } from '../store/mutation-types'
+import {
+  API_REQUEST,
+  CHANGE_ACCESS_TOKEN,
+  CHANGE_SECRET_TOKEN,
+  CHANGE_ZONE,
+  CHANGE_METHOD,
+  CHANGE_URI,
+  CHANGE_PARAMS
+  } from '../store/mutation-types'
 
 export default {
   components: {
@@ -109,11 +117,25 @@ export default {
   },
   computed: {
     ...mapState({
-      accessToken: state => state.tokens.accessToken,
-      secretToken: state => state.tokens.secretToken,
       method: state => state.request.method,
       response: state => state.response
     }),
+    accessToken: {
+      get () {
+        return this.$store.state.tokens.accessToken
+      },
+      set (token) {
+        this.$store.commit(CHANGE_ACCESS_TOKEN, token)
+      }
+    },
+    secretToken: {
+      get () {
+        return this.$store.state.tokens.secretToken
+      },
+      set (token) {
+        this.$store.commit(CHANGE_SECRET_TOKEN, token)
+      }
+    },
     zone: {
       get () {
         return this.$store.state.request.zone

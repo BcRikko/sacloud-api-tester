@@ -1,5 +1,7 @@
 // Client
 export const API_REQUEST = 'API_REQUEST'
+export const CHANGE_ACCESS_TOKEN = 'CHANGE_ACCESS_TOKEN'
+export const CHANGE_SECRET_TOKEN = 'CHANGE_SECRET_TOKEN'
 export const CHANGE_ZONE = 'CHANGE_ZONE'
 export const CHANGE_METHOD = 'CHANGE_METHOD'
 export const CHANGE_URI = 'CHANGE_URI'
