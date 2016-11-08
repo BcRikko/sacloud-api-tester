@@ -176,8 +176,8 @@ export default {
     },
     run () {
       if (this.rememberMe) {
-        window.localStorage.setItem('sacloud-api-tester:access-token', this.accessToken)
-        window.localStorage.setItem('sacloud-api-tester:secret-token', this.secretToken)
+        if (this.accessToken) { window.localStorage.setItem('sacloud-api-tester:access-token', this.accessToken) }
+        if (this.secretToken) { window.localStorage.setItem('sacloud-api-tester:secret-token', this.secretToken) }
       } else {
         window.localStorage.removeItem('sacloud-api-tester:access-token')
         window.localStorage.removeItem('sacloud-api-tester:secret-token')
