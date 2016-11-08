@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class="form-group has-feedback">
-        <span class="glyphicon glyphicon-search form-control-feedback"></span>
-        <input id="search" type="text" class="form-control" placeholder="Search..." v-model.trim="searchText">
-      </div>
+      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+      <input id="search" type="text" class="form-control" placeholder="Search..." v-model.trim="searchText">
+    </div>
     <div class="list-group">
-      <button class="list-group-item" style="overflow: hidden; text-overflow: ellipsis;" v-for="api in filterdList" @click="SELECT_API(api.uri)" data-toggle="tooltip" data-placement="top" :title="api.desc">{{api.uri}}</button>
+      <div v-for="api in filterdList">
+        <button class="list-group-item" style="overflow: hidden; text-overflow: ellipsis;" @click="SELECT_API(api.uri)">{{api.uri}}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -40,11 +42,6 @@ export default {
         return this.searchText.toLowerCase().split(' ').every(s => target.includes(s))
       })
     }
-  },
-  created () {
-    window.$(function () {
-      window.$('[data-toggle="tooltip"]').tooltip()
-    })
   }
 }
 </script>
