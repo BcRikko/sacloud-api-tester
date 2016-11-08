@@ -1,7 +1,7 @@
 const sacloud = require('sacloud')
 
-const _prevalidate = (data) => {
-  if (!data) {
+const _prevalidate = (params) => {
+  if (!params) {
     return {
       status: 400,
       message: 'Bad Request - There is no parameter.'
@@ -10,7 +10,7 @@ const _prevalidate = (data) => {
 
   var jsonData
   try {
-    jsonData = JSON.parse(data)
+    jsonData = JSON.parse(params)
     JSON.parse(jsonData.params)
   } catch (e) {
     return {
@@ -35,7 +35,7 @@ const _prevalidate = (data) => {
 }
 
 const request = (req, res) => {
-  const preResult = _prevalidate(req.body.data)
+  const preResult = _prevalidate(req.body.params)
   if (preResult) {
     res.status(400).json({
       status: {
@@ -47,7 +47,7 @@ const request = (req, res) => {
     return
   }
 
-  const data = JSON.parse(req.body.data)
+  const data = JSON.parse(req.body.params)
   sacloud.API_ROOT = `https://secure.sakura.ad.jp/cloud/zone/${data.zone}/api/cloud/1.1/`
 
   const client = sacloud.createClient({

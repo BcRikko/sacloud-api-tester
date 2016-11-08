@@ -5,7 +5,7 @@ export default {
   [types.API_REQUEST] ({ commit }, { params, callback }) {
     api.apiRequest(params, {
       onSuccess: (result) => {
-        commit(types.API_REQUEST, result.response.response)
+        commit(types.API_REQUEST, result.response)
         if (callback) { callback(result) }
       },
       onFailure: (result) => {
