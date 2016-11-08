@@ -24,6 +24,22 @@ bash local.sh
 
 Host: CentOS 7.2
 
+### Create　Self-signed certificate
+
+```bash
+# If mod_ssl is not installed
+yum install mod_ssl -y
+
+# Create Self-signed certificate
+cd keys
+
+openssl genrsa -aes128 2048 > server.key
+openssl req -new -key server.key > server.csr
+openssl x509 -in server.csr -days 30 -req -signkey server.key > server.crt
+openssl rsa -in server.key -out server.key
+```
+
+
 ### Single Container
 
 ```bash
