@@ -9,7 +9,7 @@ export default {
         if (callback) { callback(result) }
       },
       onFailure: (result) => {
-        const data = result.responseJSON || result
+        const data = result && result.responseJSON
         commit(types.API_REQUEST, data)
         if (callback) { callback(data) }
       }

@@ -3,18 +3,18 @@
     <div class="loader" v-show="loading"></div>
     <div class="navbar">
       <form class="form">
-        <div class="form-group" :class="{ 'has-error' : validationToken(accessToken) }">
+        <div class="form-group" :class="{ 'has-error' : isEmpty(secretToken) }">
           <label for="access-token">Access Token</label>
           <input id="access-token" type="text" class="form-control" v-model="accessToken">
           <transition name="token">
-            <p class="alert alert-danger" style="margin-top: 5px;" v-show="validationToken(accessToken)">Required input</p>
+            <p class="alert alert-danger" style="margin-top: 5px;" v-show="isEmpty(accessToken)">Required input</p>
           </transition>
         </div>
-        <div class="form-group" :class="{ 'has-error' : validationToken(secretToken) }">
+        <div class="form-group" :class="{ 'has-error' : isEmpty(secretToken) }">
           <label for="secret-token">Secret Token</label>
           <input id="secret-token" type="text" class="form-control" v-model="secretToken">
           <transition name="token">
-            <p class="alert alert-danger" style="margin-top: 5px;"  v-show="validationToken(secretToken)">Required input</p>
+            <p class="alert alert-danger" style="margin-top: 5px;"  v-show="isEmpty(secretToken)">Required input</p>
           </transition>
         </div>
         <div class="checkbox">
@@ -45,7 +45,7 @@
               </div>
               <input id="http-uri" type="text" class="form-control"　placeholder="/server/123456789012/power" v-model="uri" style="width: 360px;">
             </div>
-            <button type="button" class="btn btn-primary" @click="run">Run</button>
+            <button type="button" class="btn btn-primary" :disabled="!isValid" @click="run">Run</button>
           </div>
       </form>
     </div>
@@ -159,6 +159,18 @@ export default {
       set (params) {
         this.$store.commit(CHANGE_PARAMS, params)
       }
+    },
+    isValid () {
+      if (this.isEmpty(this.accessToken) || this.isEmpty(this.secretToken) || this.isEmpty(this.uri)) {
+        return false
+      }
+      try {
+        JSON.parse(this.requestParams)
+      } catch (e) {
+        return false
+      }
+
+      return true
     }
   },
   mounted () {
@@ -171,13 +183,13 @@ export default {
       CHANGE_ZONE,
       CHANGE_METHOD
     }),
-    validationToken (token) {
-      return !token || token.trim().length === 0
+    isEmpty (val) {
+      return !val || val.trim().length === 0
     },
     run () {
       if (this.rememberMe) {
-        if (this.accessToken) { window.localStorage.setItem('sacloud-api-tester:access-token', this.accessToken) }
-        if (this.secretToken) { window.localStorage.setItem('sacloud-api-tester:secret-token', this.secretToken) }
+        window.localStorage.setItem('sacloud-api-tester:access-token', this.accessToken)
+        window.localStorage.setItem('sacloud-api-tester:secret-token', this.secretToken)
       } else {
         window.localStorage.removeItem('sacloud-api-tester:access-token')
         window.localStorage.removeItem('sacloud-api-tester:secret-token')
