@@ -14,7 +14,7 @@ export default {
   watch: {
     'content' (value) {
       if (value !== this.beforeContent) {
-        this.editor.setValue(value, -1)
+        this.editor.setValue(value || '', -1)
       }
     }
   },
