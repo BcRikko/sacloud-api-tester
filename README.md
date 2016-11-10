@@ -6,6 +6,9 @@
 ## Development
 
 ```bash
+# Clone this repository
+git clone https://github.com/BcRikko/sacloud-api-tester.git
+
 # Setup
 npm install
 
@@ -24,7 +27,16 @@ bash local.sh
 
 Host: CentOS 7.2
 
-### Create　Self-signed certificate
+
+### Clone this repository
+
+```bash
+# Clone this repository
+git clone https://github.com/BcRikko/sacloud-api-tester.git
+```
+
+
+### Create Self-signed certificate
 
 ```bash
 # If mod_ssl is not installed
@@ -33,19 +45,18 @@ yum install mod_ssl -y
 # Create Self-signed certificate
 cd keys
 
-openssl genrsa -aes128 2048 > server.key
+# Create private key
+openssl genrsa 2048 > server.key
+# Create certificate signing request
 openssl req -new -key server.key > server.csr
+# Create server certificate
 openssl x509 -in server.csr -days 30 -req -signkey server.key > server.crt
-openssl rsa -in server.key -out server.key
 ```
 
 
 ### Single Container
 
 ```bash
-# Clone this repository
-git clone https://github.com/BcRikko/sacloud-api-tester.git
-
 # Install docker (docker-compose, node, npm)
 bash setup.sh
 
@@ -61,9 +72,6 @@ docker stop <containerid>
 ### Multi-Container
 
 ```bash
-# Clone this repository
-git clone https://github.com/BcRikko/sacloud-api-tester.git
-
 # Install docker, docker-compose, node, npm
 bash setup.sh
 
