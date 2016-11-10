@@ -15,7 +15,6 @@ const port = process.env.PORT || 3000
 const router = express.Router()
 
 router.use((req, res, next) => {
-  console.log('Something is happening.')
   next()
 })
 
