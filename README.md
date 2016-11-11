@@ -61,7 +61,7 @@ openssl x509 -in server.csr -days 30 -req -signkey server.key > server.crt
 bash setup.sh
 
 # Build image & Run(http://<ipaddress>:8080?apiRoot=localhost)
-bash setup-single.sh
+bash deploy-single.sh
 
 # stop
 dockker ps

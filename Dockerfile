@@ -24,11 +24,13 @@ RUN npm run build
 RUN mkdir /root/www
 RUN cp -R ./dist/. /root/www
 
+RUN mkdir /root/logs
+
 RUN chmod -R 755 /root
 RUN chmod 400 /etc/nginx/keys/server.key
 
 ENV NODE_ENV production
 CMD ["node", "./server/server.js"]
 
-EXPOSE 8080
+EXPOSE 443
 CMD ["nginx", "-g", "daemon off;"]
