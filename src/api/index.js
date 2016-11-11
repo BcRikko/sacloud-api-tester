@@ -28,7 +28,7 @@ export default {
     params.uri = params.uri.substr(1)
     const data = JSON.stringify(params)
 
-    Vue.http.post(`http://${API_ROOT}:3000`, {
+    Vue.http.post(`https://${API_ROOT}:3000`, {
       headers: {
         'Content-Type': 'application/json',
         'Content-Length': data.length.toString()
