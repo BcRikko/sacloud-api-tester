@@ -2,6 +2,8 @@ FROM nginx
 
 MAINTAINER BcRikko
 
+WORKDIR root
+
 ADD ./app.conf /etc/nginx/conf.d/app.conf
 
 RUN mkdir /root/logs

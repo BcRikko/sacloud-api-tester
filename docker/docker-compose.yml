@@ -9,7 +9,6 @@ nginx:
 node:
   build: node
   volumes:
-    - ../server:/root/server
     - ../:/root
   ports:
     - "3000:3000"
