@@ -1,15 +1,15 @@
 nginx:
   build: nginx
   volumes:
-    - ../app/dist:/root/www
-    - ../keys:/etc/nginx/keys
+    - ../app/dist/:/root/www
+    - ../keys/:/etc/nginx/keys
   ports:
     - "80:80"
     - "443:443"
 node:
   build: node
   volumes:
-    - ../server:/root/server
-    - ../keys:/root/server/keys
+    - ../server/:/root/server
+    - ../keys/:/root/server/keys
   ports:
     - "3000:3000"

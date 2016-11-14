@@ -73,11 +73,11 @@ docker stop <containerid>
 
 ```bash
 # Install docker, docker-compose, node, npm
-bash setup.sh
+bash ./script/setup.sh
 
 # deploy & run(http://<ipaddress>:8080)
-bash deploy-multi.sh
+bash ./script/deploy-multi.sh
 
 # stop
-bash stop.sh
+bash ./script/stop.sh
 ```
