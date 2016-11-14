@@ -4,8 +4,8 @@ MAINTAINER BcRikko
 
 WORKDIR /root
 
-ADD ./key/server.crt /root/server/keys/server.crt
-ADD ./key/server.key /root/server/keys/server.key
+ADD ./keys/server.crt /root/server/keys/server.crt
+ADD ./keys/server.key /root/server/keys/server.key
 
 RUN npm install
 
