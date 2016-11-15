@@ -9,17 +9,18 @@
 # Clone this repository
 git clone https://github.com/BcRikko/sacloud-api-tester.git
 
-# Setup
+# Client setup
+cd app
 npm install
 
 # Build client(localhost:8080)
 npm run dev
 
+# Server setup
+cd ../server
+
 # Run server(localhost:3000)
 npm run server
-
-# Local testing
-bash local.sh
 ```
 
 
