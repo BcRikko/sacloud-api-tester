@@ -2,4 +2,5 @@
 .vscode
 node_modules/
 dist/
+keys/
 npm-debug.log
