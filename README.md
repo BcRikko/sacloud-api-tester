@@ -8,6 +8,7 @@
 ```bash
 # Clone this repository
 git clone https://github.com/BcRikko/sacloud-api-tester.git
+cd sacloud-api-tester
 
 # Client setup
 cd app
@@ -34,6 +35,7 @@ Host: CentOS 7.2
 ```bash
 # Clone this repository
 git clone https://github.com/BcRikko/sacloud-api-tester.git
+cd sacloud-api-tester
 ```
 
 
@@ -52,6 +54,8 @@ openssl genrsa 2048 > server.key
 openssl req -new -key server.key > server.csr
 # Create server certificate
 openssl x509 -in server.csr -days 30 -req -signkey server.key > server.crt
+
+cd ..
 ```
 
 
