@@ -55,28 +55,13 @@ openssl x509 -in server.csr -days 30 -req -signkey server.key > server.crt
 ```
 
 
-### Single Container
-
-```bash
-# Install docker (docker-compose, node, npm)
-bash setup.sh
-
-# Build image & Run(http://<ipaddress>:8080?apiRoot=localhost)
-bash deploy-single.sh
-
-# stop
-dockker ps
-docker stop <containerid>
-```
-
-
-### Multi-Container
+### Deploy
 
 ```bash
 # Install docker, docker-compose, node, npm
 bash ./script/setup.sh
 
-# deploy & run(http://<ipaddress>:8080)
+# deploy & run(https://<ipaddress>)
 bash ./script/deploy-multi.sh
 
 # stop
